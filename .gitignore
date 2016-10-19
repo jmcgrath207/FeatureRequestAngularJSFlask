@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+#ignore .idea
+
+
+.idea/
+#ignore db
+*.db

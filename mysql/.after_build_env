@@ -1,0 +1,15 @@
+#MYSQL
+
+MYSQL_ROOT_PASSWORD=password
+
+MYSQL_DATABASE=web
+MYSQL_USER=admin
+MYSQL_PASS=admin
+
+# This is using the docker link
+MYSQL_HOSTNAME=mysql
+MYSQL_PORT=3306
+
+
+
+

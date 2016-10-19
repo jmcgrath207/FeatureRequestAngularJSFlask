@@ -1,0 +1,12 @@
+
+#SSH log in User
+SSH_USER_LOGIN=False
+USER_NAME=user
+SSH_USER_PASS=password
+
+#Enable SSH Root Login
+SSH_ROOT_LOGIN=False
+SSH_ROOT_PASS=password
+
+
+

@@ -1,0 +1,74 @@
+{% extends 'Base.html' %}
+{% block Base %}
+
+	<script type="text/javascript">
+
+    var clientid_url = "/api/client_view/{{Client_id}}/{{api_key}}";
+	</script>
+
+
+	<div ng-controller="caseview" ng-open="refreshData()" ng-init="clientid_url">
+    <input type="text" ng-model="filterText" ng-change="refreshData()" placeholder="Search..." />
+    <br />
+    <br />
+    <h3></h3>
+    <div id="grid1" ui-grid="filterGrid1" style="height:150px"></div>
+	</div>
+
+<div ng-controller="caseform" class="ng-scope">
+	<div style="padding-bottom:20px">
+		<h3>Create New Case</h3>
+	</div>
+	<form id="client-view-form" class="ng-pristine ng-valid" role="form" ng-submit="addRowAsyncAsJSON()" ng-init="clientid_url">
+		<div class="form-group">
+			<label class="col-md-2 control-label">Case Name</label>
+			<div class="col-md-4">
+				<input type="text" placeholder="Case Name" class="form-control ng-pristine ng-valid" name="case_name" ng-model="case_name" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Description</label>
+			<div class="col-md-4">
+				<textarea rows="3" placeholder="Description" class="form-control ng-pristine ng-valid" name="description" ng-model="description" required></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Priority</label>
+			<div class="col-md-4">
+				<input type="text" placeholder="ex. 1 (numbers only) "class="form-control ng-pristine ng-valid" name="priority" ng-model="priority" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Product Area</label>
+			<div class="col-md-4">
+				<input type="text" placeholder="ex. Engineering" class="form-control ng-pristine ng-valid" name="product_area" ng-model="product_area" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Target Date</label>
+			<div class="col-md-4">
+				<input type="text" placeholder="ex. 1/1/2016" class="form-control ng-pristine ng-valid" name="target_date" ng-model="target_date" required>
+			</div>
+		</div>
+
+		<br />
+    <br />
+	<br />
+    <br />
+	<br />
+    <br />
+	<br />
+    <br />
+<div class="text-align:center">
+<input form="client-view-form" type="submit" value="Submit" class="btn btn-primary" value="Refresh Page" onClick="window.location.href=window.location.href">
+</div>
+	</form>
+
+	</div>
+
+
+<script src="{{ url_for('static', filename='javascript/app.js') }}"></script>
+
+
+
+{% endblock Base %}

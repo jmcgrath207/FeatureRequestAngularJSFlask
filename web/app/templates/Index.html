@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<header>
+{% include 'header.html' %}
+    </header>
+  <body>
+
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Client Feature Request Portal</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" action="" method="POST" name="login_form">
+            <div class="form-group">
+            {{- form.Client_id -}}
+            </div>
+            <div class="form-group">
+            {{- form.Password -}}
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+
+
+
+<div class="jumbotron text-center jumbo-flex">
+        <br />
+
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+            {{ message }}<br>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+        {% for error in form.Client_id.errors %}
+          <span style="color: red;">[{{error}}]</span>
+        {% endfor %}<br>
+
+        {% for error in form.Password.errors %}
+          <span style="color: red;">[{{error}}]</span>
+        {% endfor %}<br>
+
+      <div class="container">
+        <h1 class = "index-welcome">Welcome to the Client Feature Request Portal!</h1>
+        <p>Here you can request features for your client application, please enter your client ID in the top right to get started.</p>
+      </div>
+    </div>

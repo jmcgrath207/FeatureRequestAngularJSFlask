@@ -1,0 +1,14 @@
+Flask==0.10.1
+Flask-Login==0.3.2
+Flask-SQLAlchemy==2.1
+Flask-Classy==0.6.10
+itsdangerous==0.24
+Cerberus==1.0.1
+passlib==1.6.5
+crypto==1.4.1
+jinja2==2.8
+Flask-WTF==0.12
+gunicorn==19.6.0
+bcrypt==3.1.1
+PyMySQL==0.7.9
+codecov==2.0.5

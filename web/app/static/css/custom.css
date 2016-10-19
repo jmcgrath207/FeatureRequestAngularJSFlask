@@ -1,0 +1,22 @@
+html, body {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+body > * {
+  flex-shrink: 0;
+}
+
+h1.index-welcome {
+    font-size: 34px;
+}
+
+div.jumbo-flex {
+    flex-grow: 10;
+}
+
+.jumbotron {
+   margin-bottom: 0;
+}
