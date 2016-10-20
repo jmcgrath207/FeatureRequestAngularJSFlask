@@ -10,6 +10,13 @@
 	<div ng-controller="caseview" ng-open="refreshData()" ng-init="clientid_url">
     <input type="text" ng-model="filterText" ng-change="refreshData()" placeholder="Search..." />
     <br />
+        {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+            {{ message }}<br>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
     <br />
     <h3></h3>
     <div id="grid1" ui-grid="filterGrid1" style="height:150px"></div>

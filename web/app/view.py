@@ -60,6 +60,7 @@ def Index():
                 user.current_login_ip = request.remote_addr
                 db.session.commit()
                 login_user(user)
+                flash('You have successfully logged in')
                 return render_template("Client_View.html",title='client_view',
                                    Client_id=Client_id,api_key= user.api_key)
         if form.errors:

@@ -53,6 +53,14 @@ class common_test_func(unittest.TestCase):
         output.extend([api_key, temp_json])
         return output
 
+    def login(self, username, password):
+        return self.app.post('/', data='Client_id=' + username +'&Password=' + password,
+                             follow_redirects=True,content_type='application/x-www-form-urlencoded')
+
+
+    def logout(self):
+        return self.app.get('/logout', follow_redirects=True)
+
 
 
 
@@ -179,6 +187,22 @@ class TestCase(common_test_func):
         since user name is verified in API Security"""
         pass
 
+    def test_login_logout(self):
+        self.add_user()
+        rv = self.login("   testuser  ", "   password   ")
+        assert 'You have successfully logged in' in rv.data
+        rv = self.logout()
+        assert 'You have been logged out successfully' in rv.data
+        rv = self.login('adminx', 'default')
+        assert 'Incorrect Credentials, please enter the correct Client Id and Password' in rv.data
+        rv = self.login('admin', 'defaultx')
+        assert 'Incorrect Credentials, please enter the correct Client Id and Password' in rv.data
+        rv = self.login('', 'defaultx')
+        assert '[This field is required.]' in rv.data
+        rv = self.login('', 'password')
+        assert '[This field is required.]' in rv.data
+        rv = self.login('testuser', '')
+        assert '[This field is required.]' in rv.data
 
 
 

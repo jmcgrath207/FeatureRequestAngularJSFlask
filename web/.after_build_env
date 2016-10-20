@@ -2,4 +2,4 @@
 
 #FLASK
 FLASK_SECRET_KEY=replace_me!
-
+NO_PASSWORD=True
