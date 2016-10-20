@@ -21,11 +21,17 @@ class common_test_func(unittest.TestCase):
             user = User.query.filter_by(Client_id='testuser').first()
             db.session.delete(user)
             db.session.commit()
+            user2 = User.query.filter_by(Client_id='testuser2').first()
+            db.session.delete(user2)
+            db.session.commit()
         except:
             pass
         pass_hash = bcrypt_sha256.encrypt("password", rounds=12)
         test_user_insert = User(Client_id='testuser',Password=pass_hash,api_key='api-key',current_login_ip='127.0.0.1')
         db.session.add(test_user_insert)
+        db.session.commit()
+        test_user_insert_2 = User(Client_id='testuser2',Password=pass_hash,api_key='api-key',current_login_ip='127.0.0.1')
+        db.session.add(test_user_insert_2)
         db.session.commit()
         return test_user_insert
 
@@ -109,7 +115,7 @@ class TestCase(common_test_func):
         user = User.query.filter_by(Client_id="testuser").first()
         user.current_login_ip = '127.0.0.2'
         db.session.commit()
-        get_return = self.app.get('/api/client_view/testuser/' + api_key[0])
+        get_return = self.app.get('/api/client_view/testuser2/' + api_key[0])
         assert get_return.status_code == 400
         signer = TimestampSigner(SECRET_KEY)
         time.sleep(1)
@@ -138,6 +144,7 @@ class TestCase(common_test_func):
                        data=json.dumps(temp_dic),
                        content_type='application/json')
         self.assertEqual(post_return.status_code, 400)
+
         """Verify that only POST are allowed with API KEY"""
         get_return = self.app.get('/api_key')
         self.assertEqual(get_return.status_code, 405)

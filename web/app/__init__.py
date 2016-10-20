@@ -24,10 +24,9 @@ from model import User,Role
 
 
 
-try:
-    db.create_all()
-except:
-    pass
+
+db.create_all()
+
 
 
 
