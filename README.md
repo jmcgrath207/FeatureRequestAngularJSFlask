@@ -32,7 +32,7 @@ docker-compose down
 
 ###Linux Environment variables
  
-#On Build 
+##On Build 
 On Build you can set different variables to allow 
 
 For example you can disable Root ssh login when you build the docker image.
@@ -46,7 +46,7 @@ This is can be found in path ./Feature-Request-Python-Flask/web/app/.start_env
 **It is highly suggested to change your password after build since it will be in the 
 Image Layer ex. .start_env file**
 
-#After Build
+##After Build
 
 If you want to change the Flask key you can find it here
 
