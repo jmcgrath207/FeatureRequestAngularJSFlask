@@ -1,0 +1,49 @@
+sudo: required
+
+
+env:
+  global:
+     #MYSQL
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=web
+      - MYSQL_USER=admin
+      - MYSQL_PASS=admin
+     # This is using the docker link
+      - MYSQL_HOSTNAME=mysql
+      - MYSQL_PORT=3306
+      - COMPOSE_VERSION=1.8.1
+      - secure: "fku6Mxftotvyz4UPrea19K9eMjvZCx1wonJvbt7b2XmvYHsbPCFBTQRaa3vuVCzgFTxTbijx6rHyLe2o2ynYYM60W0nTSxctXo8Ad58HGRYfdSpw6De3PorgdEwUSnChnGXlEboOhiglpfFAGxZBgITP3UWKaYoRyUfgpG6II/MZ9xnG6FyuLxl95AfdYijVx/5FEu1Zg3SBjtrEmrqWUqEqHE8x/aGImscSlCjbzn0NtSfZZyZduqO+BbKDDggraWQwifUKydqTDW6jkhzuJi0yDSgOvFRKSnPnTRkEdU2G87Y8toAUXbNfiu2BJjdEHkUCGY7XI7OLbpvkETz71Q7cWxxvR9phpWSFlOe6Ywca0PrTkwp86Ep2P8NeJBxV2Dys2U2in0fjguG0LLYb9s+12CfzJ6nIvXuNg6HCoYHu6sP9i6xY5FfOmZSyvNkWkyo/zpoUh5ms0lYxYS7NbsMnb/5IEVVXHBj0hxrVO+KEEp65AC7DBx+5p820P3Im37eF3VgOnmot6PA337hp4lCKEo7HEd1sCwmNW6ydalq869HbGOaDezYvGMOUkc/BclZjlzugqYS/rWs6JiU0khlC642OFwUaJg18uoKMs4WAHBFuPhCQdrgrdXJW1vaZiTBY/VQH4I1pvdUdRizlcbHT1SBOPzSHwn7OeGXsTZA="
+
+
+language: python
+
+python:
+  - 2.7
+
+cache:
+  - pip
+
+services:
+  - docker
+
+
+before_install:
+ - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+ - chmod +x docker-compose
+ - sudo mv docker-compose /usr/local/bin
+ - pip install --no-cache-dir -r ./web/requirements.txt
+ - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+before_script:
+  - docker-compose build
+  - docker-compose up -d
+  - docker ps -a
+
+script:
+ - sleep 10
+ - docker-compose exec web python /usr/src/app/test.py
+ - coverage run ./web/test.py
+
+after_success:
+  - codecov
+
