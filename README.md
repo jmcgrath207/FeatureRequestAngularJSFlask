@@ -78,7 +78,7 @@ The client feature project offers a RESTful API
 ```python
 
 curl -H "Content-Type: application/json" -X POST -d '{"Client_id":"clientid", "Password":"password"}' \
-http://vps87032.vps.ovh.ca/api_key
+http://127.0.0.1/api_key
 
 
 {
@@ -97,7 +97,7 @@ From here you will use the API KEY to POST data to the Feature Client Portal.
 ```python
 curl -H "Content-Type: application/json" -X \
 POST -d '{"case_name": "This is a case", "description": "About the Case", "priority": 1, "product_area": "sales", "target_date": "10/21/2017"}' \
-http://vps87032.vps.ovh.ca/api/client_view/<clientid>/<api-key>
+http://127.0.0.1/api/client_view/<clientid>/<api-key>
 
 
 {
@@ -111,7 +111,7 @@ To grab case information, follow the example below.
 
 ```python
 
-curl  http://vps87032.vps.ovh.ca/api/client_view/<clientid>/<api-key>
+curl  http://127.0.0.1/api/client_view/<clientid>/<api-key>
 
 
 [
