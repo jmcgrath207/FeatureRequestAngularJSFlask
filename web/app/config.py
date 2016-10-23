@@ -10,8 +10,8 @@ SECRET_KEY = os.environ["FLASK_SECRET_KEY"]
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 
 
-NO_PASSWORD = True
-DEBUG = True
+NO_PASSWORD = False
+DEBUG = False
 
 
 response = os.system("ping -c 5 mysql")
