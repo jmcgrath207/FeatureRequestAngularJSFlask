@@ -3,11 +3,13 @@
 
 	<script type="text/javascript">
 
-    var clientid_url = "/api/client_view/{{Client_id}}/{{api_key}}";
+    var url = "/api/client_view";
+    var api_key = "{{api_key}}";
+    var client_id = "{{Client_id}}";
 	</script>
 
 
-	<div ng-controller="caseview" ng-open="refreshData()" ng-init="clientid_url">
+	<div ng-controller="caseview" ng-open="refreshData()" ng-init="url;api_key;client_id">
     <input type="text" ng-model="filterText" ng-change="refreshData()" placeholder="Search..." />
     <br />
         {% with messages = get_flashed_messages() %}
@@ -26,7 +28,7 @@
 	<div style="padding-bottom:20px">
 		<h3>Create New Case</h3>
 	</div>
-	<form id="client-view-form" class="ng-pristine ng-valid" role="form" ng-submit="addRowAsyncAsJSON()" ng-init="clientid_url">
+	<form id="client-view-form" class="ng-pristine ng-valid" role="form" ng-submit="addRowAsyncAsJSON()" ng-init="url;api_key;client_id">
 		<div class="form-group">
 			<label class="col-md-2 control-label">Case Name</label>
 			<div class="col-md-4">

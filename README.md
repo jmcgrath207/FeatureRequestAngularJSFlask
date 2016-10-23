@@ -32,7 +32,7 @@ docker-compose down
 
 ###Linux Environment variables
  
-##On Build 
+###On Build 
 On Build you can set different variables to allow 
 
 For example you can disable Root ssh login when you build the docker image.
@@ -46,7 +46,7 @@ This is can be found in path ./Feature-Request-Python-Flask/web/app/.start_env
 **It is highly suggested to change your password after build since it will be in the 
 Image Layer ex. .start_env file**
 
-##After Build
+###After Build
 
 If you want to change the Flask key you can find it here
 
@@ -95,9 +95,10 @@ From here you will use the API KEY to POST data to the Feature Client Portal.
 
 
 ```python
-curl -H "Content-Type: application/json" -X \
-POST -d '{"case_name": "This is a case", "description": "About the Case", "priority": 1, "product_area": "sales", "target_date": "10/21/2017"}' \
-http://127.0.0.1/api/client_view/<clientid>/<api-key>
+
+curl -H "Content-Type: application/json" curl  -H "API_KEY:<api-key>" -H "Client_ID:<clientid>" \
+-X POST -d '{"case_name": "This is a case", "description": "About the Case", "priority": 1, "product_area": "sales", "target_date": "10/21/2017"}' \
+http://127.0.0.1/api/client_view
 
 
 {
@@ -111,7 +112,7 @@ To grab case information, follow the example below.
 
 ```python
 
-curl  http://127.0.0.1/api/client_view/<clientid>/<api-key>
+curl  -H "API_KEY:<api-key>" -H "Client_ID:<clientid>" http://127.0.0.1:5000/api/client_view
 
 
 [

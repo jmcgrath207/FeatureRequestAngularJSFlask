@@ -49,9 +49,18 @@ app.controller('caseview', function($scope, $filter, $http,$window,sharedModels)
 
     /* TODO: Add sample data to scope */
 
-    $scope.clientid_url = $window.clientid_url;
+    $scope.url = $window.url;
+    $scope.api_key = $window.api_key;
+    $scope.client_id = $window.client_id;
 
-        $http.get($scope.clientid_url)
+    var config = {headers:  {
+        'API_KEY': $scope.api_key,
+        'Client_ID': $scope.client_id,
+         }
+        };
+
+
+        $http.get($scope.url,config)
        .then(function(res){
           $scope.Data = res.data;
          });
@@ -72,7 +81,15 @@ app.controller('caseview', function($scope, $filter, $http,$window,sharedModels)
 app.controller("caseform", ['$scope', '$http','$window',  function($scope, $http,$window) {
 $scope.addRowAsyncAsJSON = function(){
 
-            $scope.clientid_url = $window.clientid_url;
+    $scope.url = $window.url;
+    $scope.api_key = $window.api_key;
+    $scope.client_id = $window.client_id;
+
+    var config = {headers:  {
+        'API_KEY': $scope.api_key,
+        'Client_ID': $scope.client_id,
+         }
+        };
 
 
           /* TODO: find out how to push data to other scope without page refresh */
@@ -97,7 +114,7 @@ $scope.addRowAsyncAsJSON = function(){
                 target_date : $scope.target_date
 		};
 
-		var res = $http.post($scope.clientid_url, dataObj);
+		var res = $http.post($scope.url, dataObj,config);
 		res.success(function(data, status, headers, config) {
 			$scope.message = data;
 		});

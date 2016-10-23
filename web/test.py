@@ -30,7 +30,7 @@ class common_test_func(unittest.TestCase):
         test_user_insert = User(Client_id='testuser',Password=pass_hash,api_key='api-key',current_login_ip='127.0.0.1')
         db.session.add(test_user_insert)
         db.session.commit()
-        test_user_insert_2 = User(Client_id='testuser2',Password=pass_hash,api_key='api-key',current_login_ip='127.0.0.1')
+        test_user_insert_2 = User(Client_id='testuser2',Password=pass_hash,api_key='api-key',current_login_ip='127.0.0.2')
         db.session.add(test_user_insert_2)
         db.session.commit()
         return test_user_insert
@@ -51,9 +51,11 @@ class common_test_func(unittest.TestCase):
         api_key = self.grab_api_key()
         temp_json = json.dumps({"case_name": "This is a case", "description": "About the Case",
                     "priority": 1, "product_area": "sales", "target_date": "10/21/2017"})
-        post_return = self.app.post('api/client_view/testuser/' + api_key,
+        post_return = self.app.post('/api/client_view',
                        data=temp_json,
-                       content_type='application/json')
+                       content_type='application/json',
+                       headers={'API_KEY': api_key, 'Client_ID': 'testuser'})
+
         self.assertEqual(post_return.status_code, 200)
         output = []
         output.extend([api_key, temp_json])
@@ -107,16 +109,17 @@ class TestCase(common_test_func):
     def test_general_api_security(self):
         ##TODO: Add General API security test
         """This Tests the API security that is checked before all POST and GET request"""
-        get_return = self.app.get('/api/client_view/testuser/api_key')
-        assert get_return.status_code == 400
+        get_return = self.app.get('/api/client_view',
+                                  headers={'API_KEY': 'api_key', 'Client_ID': 'testuser'})
+        assert 'Failure": "Incorrect API Key' in get_return.data
         api_key = self.post_info()
-        get_return = self.app.get('/api/client_view/fakeuser/' + api_key[0])
-        assert get_return.status_code == 400
-        user = User.query.filter_by(Client_id="testuser").first()
-        user.current_login_ip = '127.0.0.2'
-        db.session.commit()
-        get_return = self.app.get('/api/client_view/testuser2/' + api_key[0])
-        assert get_return.status_code == 400
+        get_return = self.app.get('/api/client_view',
+                                  headers={'API_KEY': api_key[0], 'Client_ID': 'fakeuser'})
+        assert 'Failure": "Invaild User' in get_return.data
+        user = User.query.filter_by(Client_id="testuser2").first()
+        get_return = self.app.get('/api/client_view',
+                                  headers={'API_KEY': user.api_key, 'Client_ID': 'testuser2'})
+        assert 'Failure": "Incorrect IP for Client, Please Re-login in' in get_return.data
         signer = TimestampSigner(SECRET_KEY)
         time.sleep(1)
         try:
@@ -167,9 +170,10 @@ class TestCase(common_test_func):
         api_key = self.grab_api_key()
         temp_json = json.dumps({"case_name": "This is a case", "description": "About the Case",
                     "priority": "asdf", "product_area": "sales", "target_date": "asdfasdf"})
-        post_return = self.app.post('api/client_view/testuser/' + api_key,
+        post_return = self.app.post('/api/client_view',
                        data=temp_json,
-                       content_type='application/json')
+                       content_type='application/json',
+                        headers = {'API_KEY': api_key, 'Client_ID': 'testuser'})
         self.assertEqual(post_return.status_code, 400)
 
 
@@ -179,7 +183,8 @@ class TestCase(common_test_func):
         """Test Grabing JSON data and comparing it to the Database"""
         api_key = self.post_info()
         user = Client_View.query.filter_by(case_name="This is a case").first()
-        get_return = self.app.get('/api/client_view/testuser/' + api_key[0])
+        get_return = self.app.get('/api/client_view',
+                                  headers={'API_KEY':  api_key[0], 'Client_ID': 'testuser'})
         content = json.loads(get_return.data)
         assert user.case_name in content[0][u'case_name']
         self.assertEqual(user.priority, content[0][u'priority'])

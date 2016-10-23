@@ -93,5 +93,6 @@ ENV/
 .idea/
 #ignore db
 
-/web/app/*.db
+
 /web/app/test.db
+/web/app/app.db

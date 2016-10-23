@@ -27,6 +27,9 @@ from model import User,Role
 
 db.create_all()
 
+#Debugg and see the routes
+print app.url_map
+
 
 
 
