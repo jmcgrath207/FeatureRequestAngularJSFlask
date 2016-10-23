@@ -25,9 +25,6 @@ Tear down Docker containers.
 docker-compose down
 ```
 
-
-
-
 ##Configuration
 
 ###Linux Environment variables
@@ -50,7 +47,7 @@ Image Layer ex. .start_env file**
 
 If you want to change the Flask key you can find it here
 
-```bash
+```python
 FLASK_SECRET_KEY=replace_me!
 ```
 
@@ -75,7 +72,7 @@ The client feature project offers a RESTful API
 
 ####Get API KEY
 
-```python
+```bash
 
 curl -H "Content-Type: application/json" -X POST -d '{"Client_id":"clientid", "Password":"password"}' \
 http://127.0.0.1/api_key
@@ -94,7 +91,7 @@ From here you will use the API KEY to POST data to the Feature Client Portal.
 
 
 
-```python
+```bash
 
 curl -H "Content-Type: application/json" curl  -H "API_KEY:<api-key>" -H "Client_ID:<clientid>" \
 -X POST -d '{"case_name": "This is a case", "description": "About the Case", "priority": 1, "product_area": "sales", "target_date": "10/21/2017"}' \
@@ -110,9 +107,9 @@ http://127.0.0.1/api/client_view
 
 To grab case information, follow the example below.
 
-```python
+```bash
 
-curl  -H "API_KEY:<api-key>" -H "Client_ID:<clientid>" http://127.0.0.1:5000/api/client_view
+curl  -H "API_KEY:<api-key>" -H "Client_ID:<clientid>" http://127.0.0.1/api/client_view
 
 
 [
