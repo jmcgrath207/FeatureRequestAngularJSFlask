@@ -93,7 +93,7 @@ From here you will use the API KEY to POST data to the Feature Client Portal.
 
 ```bash
 
-curl -H "Content-Type: application/json" curl  -H "API_KEY:<api-key>" -H "Client_ID:<clientid>" \
+curl -H "Content-Type: application/json" -H "API_KEY:<api-key>" -H "Client_ID:<clientid>" \
 -X POST -d '{"case_name": "This is a case", "description": "About the Case", "priority": 1, "product_area": "sales", "target_date": "10/21/2017"}' \
 http://127.0.0.1/api/client_view
 
