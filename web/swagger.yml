@@ -1,0 +1,39 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: Client Feature Request
+
+# Describe your paths here
+paths:
+  # This is a path endpoint. Change it.
+  /api_key:
+    # This is a HTTP operation
+    post:
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        Grabs API key for Post and Get Operation to the API
+      parameters:
+        -
+          name: Client ID
+          in: query
+          description: Client ID used to login with
+          required: true
+          type: string
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+              title: api_key
+              type: object
+              properties:
+                API KEY:
+                  type: string
