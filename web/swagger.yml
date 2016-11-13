@@ -9,9 +9,15 @@ info:
   title: Client Feature Request
 
 # Describe your paths here
+
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
 paths:
   # This is a path endpoint. Change it.
-  /api_key:
+  /client_view:
     # This is a HTTP operation
     post:
       # Describe this verb here. Note: you can use markdown
@@ -37,3 +43,5 @@ paths:
               properties:
                 API KEY:
                   type: string
+      security:
+        - api_key: []
