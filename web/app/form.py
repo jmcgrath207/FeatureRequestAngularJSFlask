@@ -26,5 +26,5 @@ class LoginForm(MyBaseForm):
 
 """JSON Vaildations Schema"""
 client_view_schema = {'case_name': {'required': True, 'type': 'string'}, 'priority': {'required': True, 'type': 'integer', 'max': 10},
-          'target_date': {'required': True, 'type': 'string', 'regex': '([0-1][0-2]|[0-9])\/(3[0-1]|[1-2][0-9]|[0-9])\/2\d{3}'},
+          'target_date': {'required': True, 'type': 'string', 'regex': '(1[0-2]|0[1-9])\/(3[0-1]|[1-2][0-9]|[0-9])\/2\d{3}'},
           'product_area': {'required': True, 'type': 'string'},'description': {'required': True, 'type': 'string'}}
