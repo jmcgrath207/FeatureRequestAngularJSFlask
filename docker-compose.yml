@@ -34,7 +34,7 @@ services:
 
   mysql:
     restart: always
-    image: mysql/mysql-server
+    image: mysql:5.7.16
     env_file: ./mysql/.after_build_env
 
 
