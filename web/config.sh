@@ -20,6 +20,7 @@ if [ "$SSH_ROOT_LOGIN" = False ] ; then
     echo "Removed Root SSH Access"
 else
     echo 'root:'$SSH_ROOT_PASS | chpasswd
+    sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin yes/' /etc/ssh/sshd_config
     echo
     echo ssh root password: $SSH_ROOT_PASS
     echo
