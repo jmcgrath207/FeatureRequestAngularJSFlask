@@ -4,14 +4,14 @@ import os
 # Without this get_auth_token via POST request w/ JSON data does not work
 # You keep getting "CSRF token missing" error
 WTF_CSRF_ENABLED = False
-SECRET_KEY = os.environ["FLASK_SECRET_KEY"]
-#SECRET_KEY = "asdfasdfdsaf"
+#SECRET_KEY = os.environ["FLASK_SECRET_KEY"]
+SECRET_KEY = "asdfasdfdsaf"
 
 #Correct the issue where Jinja2 will error out if variable is not defined
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 
 
-NO_PASSWORD = False
+NO_PASSWORD = True
 DEBUG = False
 
 
