@@ -19,7 +19,7 @@ RUN apt-get install -y supervisor\
 	 vim \
 	&& rm -rf /var/lib/apt/lists/*
 
-
+### Add app and install dep ###
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
