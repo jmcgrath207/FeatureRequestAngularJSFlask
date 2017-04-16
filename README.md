@@ -6,7 +6,9 @@ Client Feature Request
  
 Source Code for the Client Feature Request Project
 
-##Docker
+![Main Image](https://github.com/sonance207/Feature-Request-Python-Flask/raw/master/img/main_pic.png)
+
+## Docker
 
 Build docker containers with docker compose
 
@@ -23,11 +25,11 @@ Tear down Docker containers.
 docker-compose down
 ```
 
-##Configuration
+## Configuration
 
-###Linux Environment variables
+### Linux Environment variables
  
-###On Build 
+### On Build 
 On Build you can set different variables to allow 
 
 For example you can disable Root ssh login when you build the docker image.
@@ -38,10 +40,10 @@ SSH_ROOT_LOGIN=False
 
 This is can be found in path ./Feature-Request-Python-Flask/web/app/.start_env
 
-**It is highly suggested to change your password after build since it will be in the 
-Image Layer ex. .start_env file**
+***It is highly suggested to change your password after build since it will be in the 
+Image Layer ex. .start_env file***
 
-###After Build
+### After Build
 
 If you want to change the Flask key you can find it here
 
@@ -52,7 +54,7 @@ FLASK_SECRET_KEY=replace_me!
 This is can be found in path ./Feature-Request-Python-Flask/web/app/.after_build_env
 
 
-###Flask
+### Flask
 There is a variable that allows you login without creating a account named NO_PASSWORD.
 By default it is set to False, which will prevent accounts being made via login.
 
@@ -64,11 +66,11 @@ ex.
 NO_PASSWORD = False
 ```
 
-##API
+## API
 
 The client feature project offers a RESTful API
 
-####Get API KEY
+#### Get API KEY
 
 ```bash
 
@@ -83,7 +85,7 @@ http://127.0.0.1/api_key
 Note: Each API Key will expire in 24 hours, you will have to request
 for a new one.
 
-####POST
+#### POST
 
 From here you will use the API KEY to POST data to the Feature Client Portal.
 
@@ -101,7 +103,7 @@ http://127.0.0.1/api/client_view
 }
 ```
 
-####GET
+#### GET
 
 To grab case information, follow the example below.
 
