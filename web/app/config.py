@@ -4,7 +4,7 @@ import os
 # Without this get_auth_token via POST request w/ JSON data does not work
 # You keep getting "CSRF token missing" error
 WTF_CSRF_ENABLED = False
-SECRET_KEY = os.environ["FLASK_SECRET_KEY"]
+
 
 
 #Correct the issue where Jinja2 will error out if variable is not defined
@@ -20,6 +20,7 @@ response = os.system("ping -c 5 mysql")
 
 if response != 0:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+    SECRET_KEY = "FLASK_SECRET_KEY"
 else:
     SQLALCHEMY_DATABASE_URI = "mysql+pymysql://%s:%s@%s:%s/%s" % (
         "root",
@@ -27,6 +28,7 @@ else:
         os.environ["MYSQL_HOSTNAME"],
         os.environ["MYSQL_PORT"],
         os.environ["MYSQL_DATABASE"])
+    SECRET_KEY = os.environ["FLASK_SECRET_KEY"]
 
 
 SQLALCHEMY_BINDS = {
