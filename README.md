@@ -1,7 +1,7 @@
 
 Client Feature Request
 ==
-[![Travis CI Build](https://travis-ci.org/sonance207/Feature-Request-Python-Flask.svg?branch=master)](https://travis-ci.org/sonance207/Feature-Request-Python-Flask) [![Codecov Code Coverage](https://codecov.io/gh/sonance207/Feature-Request-Python-Flask/branch/master/graph/badge.svg)](https://codecov.io/gh/sonance207/Feature-Request-Python-Flask) [![Code Health](https://landscape.io/github/sonance207/Feature-Request-Python-Flask/master/landscape.svg?style=flat)](https://landscape.io/github/sonance207/Feature-Request-Python-Flask/master)
+[![Travis CI Build](https://travis-ci.org/sonance207/Feature-Request-Python-Flask.svg?branch=master)](https://travis-ci.org/sonance207/Feature-Request-Python-Flask) [![Coverage Status](https://coveralls.io/repos/github/sonance207/Feature-Request-Python-Flask/badge.svg?branch=dev)](https://coveralls.io/github/sonance207/Feature-Request-Python-Flask?branch=dev)[![Code Health](https://landscape.io/github/sonance207/Feature-Request-Python-Flask/master/landscape.svg?style=flat)](https://landscape.io/github/sonance207/Feature-Request-Python-Flask/master)
 
  
 Source Code for the Client Feature Request Project
