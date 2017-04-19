@@ -44,7 +44,7 @@ before_script:
 script:
  - sleep 10
  - docker-compose exec web python /usr/src/app/test.py
- - coverage run ./web/test.py
+ - coverage run --source=app web/test.py
  - coverage report --omit=/home/*/lib/*
 
 after_success:
