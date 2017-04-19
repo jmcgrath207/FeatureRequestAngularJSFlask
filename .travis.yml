@@ -34,6 +34,7 @@ before_install:
  - sudo mv docker-compose /usr/local/bin
  - pip install --no-cache-dir -r ./web/requirements.txt
  - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+ - pip install coveralls
 
 before_script:
   - docker-compose build
@@ -46,7 +47,6 @@ script:
  - coverage run ./web/test.py
  - coverage report --omit=/home/*/lib/*
 
-
 after_success:
-  - codecov
+  - coveralls
 
