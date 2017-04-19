@@ -44,7 +44,7 @@ script:
  - sleep 10
  - docker-compose exec web python /usr/src/app/test.py
  - coverage run ./web/test.py
- - coverage report --omit=/home/*/.local/lib/python*/
+ - coverage report --omit=/home/*
 
 
 after_success:
