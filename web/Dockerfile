@@ -1,11 +1,10 @@
 FROM python:2.7
 
+#install all system and python dep
 
+WORKDIR /usr/src/app
 
-###System Dep####
-RUN apt-get update
-
-RUN apt-get install -y supervisor\
+RUN apt-get update  && apt-get install -y supervisor\
    gcc \
 	 python-pip \
 	 git \
@@ -19,44 +18,22 @@ RUN apt-get install -y supervisor\
 	 vim \
 	&& rm -rf /var/lib/apt/lists/*
 
-### Add app and install dep ###
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+
+COPY requirements.txt /usr/src/app
+RUN pip install --no-cache-dir -r requirements.txt && cd /etc && rm -f localtime && ln -s /usr/share/zoneinfo/US/Central localtime && \
+echo 'syntax on'      >> /root/.vimrc && echo 'alias vi="vim"' >> /root/.bash_profile && \
+mkdir /var/run/sshd && mkdir -p /usr/src/app && mkdir -p /var/log/supervisor
+
+# Adding all the files in web root
 
 COPY . /usr/src/app
-
-
-RUN pip install --no-cache-dir -r requirements.txt
-
-####System Settings#####
-
-
-#Change Time Zone
-RUN cd /etc
-RUN rm -f localtime
-RUN ln -s /usr/share/zoneinfo/US/Central localtime
-
-
-# install vim
-RUN echo 'syntax on'      >> /root/.vimrc && echo 'alias vi="vim"' >> /root/.bash_profile
-
-
-#####SSH##########
-
-RUN mkdir /var/run/sshd
-
-
-####Supervisord####
-
-RUN mkdir -p /var/log/supervisor
 
 # Custom Supervisord config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 #ONBUILD Start script
-RUN chmod 755 config.sh
-RUN ./config.sh
+RUN chmod 755 config.sh && sleep 1s && ./config.sh
 
 
 

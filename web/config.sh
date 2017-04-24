@@ -3,7 +3,7 @@
 start() {
 
 #ADD .ENV FILE
-. /usr/src/app/.start_env
+. /usr/src/app/.start_env.env
 
 # Create a user to SSH into as.
 

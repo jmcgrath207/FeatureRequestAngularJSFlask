@@ -12,8 +12,8 @@ services:
     volumes:
       - /usr/src/app/app/static
     env_file:
-      - ./mysql/.after_build_env
-      - ./web/.after_build_env
+      - ./mysql/.after_build_env.env
+      - ./web/.after_build_env.env
     depends_on:
         - mysql
     command: /bin/bash -c "sleep 10; /usr/bin/supervisord"
@@ -35,7 +35,7 @@ services:
   mysql:
     restart: always
     image: mysql:5.7.16
-    env_file: ./mysql/.after_build_env
+    env_file: ./mysql/.after_build_env.env
 
 
 #http://containertutorials.com/docker-compose/nginx-flask-postgresql.html
