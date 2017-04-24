@@ -11,7 +11,7 @@ WTF_CSRF_ENABLED = False
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 
 
-NO_PASSWORD = True
+NO_PASSWORD = False
 DEBUG = False
 
 
@@ -33,7 +33,7 @@ else:
 
 SQLALCHEMY_BINDS = {
     'auth_user': SQLALCHEMY_DATABASE_URI,
-    'auth_role' : SQLALCHEMY_DATABASE_URI,
+    'auth_role': SQLALCHEMY_DATABASE_URI,
     'Client_View': SQLALCHEMY_DATABASE_URI,
 }
 
