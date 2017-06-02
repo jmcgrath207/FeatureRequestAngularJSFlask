@@ -10,7 +10,7 @@ Source Code for the Client Feature Request Project
 
 ## Docker
 
-Build docker containers with docker compose
+Build Docker containers with Docker compose
 
 ```bash
 git clone https://github.com/sonance207/Feature-Request-Python-Flask.git
@@ -30,9 +30,9 @@ docker-compose down
 ### Linux Environment variables
  
 ### On Build 
-On Build you can set different variables to allow 
+On Build, you can set different variables to allow 
 
-For example you can disable Root ssh login when you build the docker image.
+For example, you can disable Root ssh login when you build the Docker image.
 
 ```bash
 SSH_ROOT_LOGIN=False
@@ -40,12 +40,12 @@ SSH_ROOT_LOGIN=False
 
 This is can be found in path ./Feature-Request-Python-Flask/web/app/.start_env
 
-***It is highly suggested to change your password after build since it will be in the 
-Image Layer ex. .start_env file***
+***It is highly suggested that you change your password after build since it will be in the 
+Image Layer. This is found in the .start_env file***
 
 ### After Build
 
-If you want to change the Flask key you can find it here
+If you want to change the Flask key, you can find it here
 
 ```python
 FLASK_SECRET_KEY=replace_me!
@@ -55,10 +55,10 @@ This is can be found in path ./Feature-Request-Python-Flask/web/app/.after_build
 
 
 ### Flask
-There is a variable that allows you login without creating a account named NO_PASSWORD.
-By default it is set to False, which will prevent accounts being made via login.
+There is a variable that allows you log in without creating an account named NO_PASSWORD.
+By default, it is set to False, which prevents accounts from being made via login.
 
-This is can be found in path /Feature-Request-Python-Flask/web/app/config.py
+This can be found in the path /Feature-Request-Python-Flask/web/app/config.py of the project folder.
 
 ex.
 
@@ -82,12 +82,11 @@ http://127.0.0.1/api_key
   "API KEY": "Ohe0cUSguTTSvqY67MwqYTqqn935HC.Cso2bQ.5BZdfmAaZFz9qaGyTqJSAzXuMYA"
 }
 ```
-Note: Each API Key will expire in 24 hours, you will have to request
-for a new one.
+Note: Each API Key expires after 24 hours
 
 #### POST
 
-From here you will use the API KEY to POST data to the Feature Client Portal.
+Use the API KEY to POST data to the Feature Client Portal.
 
 
 
