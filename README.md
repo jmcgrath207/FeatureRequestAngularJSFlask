@@ -111,6 +111,7 @@ To grab case information, follow the example below.
 curl  -H "API_KEY:<api-key>" -H "Client_ID:<clientid>" http://127.0.0.1/api/client_view
 
 
+
 [
     {
         "case_name": "sample case",
