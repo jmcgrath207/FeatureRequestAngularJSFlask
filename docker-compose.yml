@@ -1,3 +1,5 @@
+#http://containertutorials.com/docker-compose/nginx-flask-postgresql.html
+
 version: '2'
 services:
   web:
@@ -38,4 +40,4 @@ services:
     env_file: ./mysql/.after_build_env.env
 
 
-#http://containertutorials.com/docker-compose/nginx-flask-postgresql.html
+
